@@ -1,21 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Repositories;
 
+use App\Repositories\Interfaces\HomePageRepositoryInterface;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-class WelcomeController extends Controller
-{
-    /**
-     * Обработка перехода на главную страницу
-     */
+class HomePageRepository implements HomePageRepositoryInterface {
     public function index() {
-        
         if(Auth::check()) {
             return Redirect::route('contacts.index');
         }
@@ -23,8 +18,6 @@ class WelcomeController extends Controller
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
         ]);
     }
 }

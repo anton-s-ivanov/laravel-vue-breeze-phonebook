@@ -1,13 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Phonebook\ContactController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WelcomeController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +16,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [HomePageController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
